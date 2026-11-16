@@ -1,5 +1,7 @@
 # Lineup
 
+Check it out: lineup-consumerapp.vercel.app
+
 A fantasy league for your own life. Players draft their week by voice, put money on it, and prove each task to their league with AI-verified photos. The interface is modelled on the ESPN Fantasy app.
 
 A week goes like this:
