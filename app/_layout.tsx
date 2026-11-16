@@ -13,6 +13,7 @@ import { convex } from "@/lib/convex";
 import { CurrentLeagueProvider } from "@/lib/currentLeague";
 import { tokenStorage } from "@/lib/tokenStorage";
 import { colors } from "@/theme";
+import "@/theme/web.css";
 
 export { RootError as ErrorBoundary } from "@/components/shell/RootError";
 

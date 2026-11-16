@@ -6,9 +6,9 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  useWindowDimensions,
   View,
 } from "react-native";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 import Animated, {
   useAnimatedProps,
   useAnimatedStyle,
@@ -103,7 +103,7 @@ export function CoachTour({
   const me = useQuery(backend.users.me);
   const focused = useIsFocused();
   const resets = useCoachResets();
-  const screen = useWindowDimensions();
+  const screen = useSafeAreaFrame();
   const [steps, setSteps] = useState<Step[] | null>(null);
   const [index, setIndex] = useState(0);
   const userId = me?._id;
@@ -121,7 +121,9 @@ export function CoachTour({
               const view = targets.get(target);
               if (!view) return resolve(null);
               view.measureInWindow((x, y, width, height) => {
-                const rect = { x, y, width, height };
+                // measureInWindow includes the desktop gutters; the modal's
+                // coordinates start at the app canvas instead.
+                const rect = { x: x - screen.x, y: y - screen.y, width, height };
                 resolve(
                   isOnScreen(rect, screen)
                     ? {

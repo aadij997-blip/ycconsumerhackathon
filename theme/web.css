@@ -1,0 +1,23 @@
+html {
+  background-color: #edf0eb;
+}
+
+/* A full-height phone canvas, with empty gutters on wider browser windows. */
+html body {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #faf8f2;
+  /* Keep fixed-position modal portals inside the same phone canvas. */
+  transform: translateZ(0);
+}
+
+#root {
+  width: 100%;
+  min-width: 0;
+}

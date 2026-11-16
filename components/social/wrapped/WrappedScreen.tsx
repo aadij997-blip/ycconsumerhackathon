@@ -2,10 +2,10 @@ import { useQuery } from "convex/react";
 import { useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { type ComponentRef, useRef, useState } from "react";
-import { FlatList, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { FlatList, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
 import { captureRef } from "react-native-view-shot";
 
 import { useSwipeDownToClose } from "@/components/motion/useSwipeDownToClose";
@@ -34,7 +34,8 @@ export function WrappedScreen() {
   const weekNumber = params.weekNumber ? Number(params.weekNumber) : undefined;
   const wrapped = useQuery(socialApi.wrapped.get, leagueId ? { leagueId, ...(weekNumber === undefined ? {} : { weekNumber }) } : "skip");
 
-  const { width, height } = useWindowDimensions();
+  // Story pages follow the app canvas, including its centered web layout.
+  const { width, height } = useSafeAreaFrame();
   const insets = useSafeAreaInsets();
   const list = useRef<FlatList>(null);
   // One wrapper view per card, so Share captures just the card without the segments and buttons on top.
